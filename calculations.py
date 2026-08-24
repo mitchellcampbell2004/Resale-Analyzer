@@ -1,29 +1,41 @@
 #resale.py
 #Mitchell Campbell
-'''Purpose: to create an application utilizing Python and R in which one can enter information, calculate results, and display information related to reselling.'''
+'''Purpose: to create the calculations for the resale analyzer application'''
 
-#Home Screen; possible user/pw entering
-print("Welcome!")
+#What I've learned:
+#-how to import CSV
+#-how to use Rainbow CSV to make better use of csv data
+#-how to open and parse csv files and make dictionaries with that data using "with open" and "as file"
+#-how to create dictionaries within dictionaries
 
-#explain the purpose
-print("The purpose of this program is to aid resellers with finding (potential) goods, calculating profitability, and to display the calculated information in an easily-digestible format.")
 
-#Home menu
+def total_cost(price_per_unit, total_units, tax, shipping):
+    '''Calculate total cost of a potential purchase'''
+    product_cost = price_per_unit * total_units
+    return product_cost + shipping + tax
 
-print("What would you like to do?")
+#print(f"Total_cost: ${total_cost(12.00, 30.00, 125.00)}")
 
-while True:
-    home_menu_choice = input('-See prior purchases/profits (enter "prior" or "history") \n-Calculate potential/new profits (enter "potential" or "new") \n-Other (enter "other") ').lower().strip()
-    if home_menu_choice in ('prior', 'history'):
-        print("Routing to history...")
-    elif home_menu_choice in ('potential', 'new'):
-        print("Routing to new order...")
-    elif home_menu_choice in ('other'):
-        print('Routing to "Other" menu...')
-    else:
-        print("Sorry, that is not a valid option.")
-        print("Please select one of the options listed on the menu.")
+#dictionaries containing things like sales tax by state
+import csv
 
-if home_menu_choice in ('prior', 'history'):
-    print("Welcome to the potential/current ")
-#Enter information related to potential purchase
+sales_tax_dict = {}
+#open sales tax file and build dictionary with state dictionaries inside it
+with open("2026_sales_tax_by_state.csv", "r") as file: #means to open and read ("r") csv file, work "with" it and then close when done
+    sales_tax_reader = csv.DictReader(file)
+
+    for row in sales_tax_reader:
+        sales_tax_state = row["State"]
+        statewide_sales_tax = (float(row["State Sales Tax Rate"].replace("%", "")) / 100)
+        avg_local_sales_tax = (float(row["Avg. Local Sales Tax Rate"].replace("%", "")) / 100)
+        total_sales_tax = statewide_sales_tax + avg_local_sales_tax
+
+        sales_tax_dict[sales_tax_state] = {
+            "statewide": statewide_sales_tax,
+            "local": avg_local_sales_tax,
+            "total": total_sales_tax
+        }
+
+        #print(sales_tax_dict)
+
+#select state to find sales tax
