@@ -1,0 +1,17 @@
+_pycache_/
+*.pyc
+
+.venv/
+venv/
+
+.env
+.env*
+
+.Rhistory
+.RData
+.Rproj.user/
+
+.vscode/
+
+.DS_Store
+Thumbs.db
