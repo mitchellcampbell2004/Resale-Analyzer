@@ -1,4 +1,4 @@
-resale.py
+#resale.py
 #Mitchell Campbell
 '''Purpose: to create an application utilizing Python and R in which one can enter information, calculate results, and display information related to reselling.'''
 
