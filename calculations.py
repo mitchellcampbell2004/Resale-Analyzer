@@ -19,7 +19,10 @@ def total_cost(price_per_unit, total_units, tax, shipping):
 #dictionaries containing things like sales tax by state
 import csv
 
+
+#sales tax dict; info. via https://taxfoundation.org/data/all/state/sales-tax-rates/
 sales_tax_dict = {}
+
 #open sales tax file and build dictionary with state dictionaries inside it
 with open("2026_sales_tax_by_state.csv", "r") as file: #means to open and read ("r") csv file, work "with" it and then close when done
     sales_tax_reader = csv.DictReader(file)
@@ -38,4 +41,7 @@ with open("2026_sales_tax_by_state.csv", "r") as file: #means to open and read (
 
         #print(sales_tax_dict)
 
-#select state to find sales tax
+#select state + calculate sales tax
+while True:
+    sales_tax_state_selection = input("What state would you be making this purchase in? ").strip().lower()
+    
