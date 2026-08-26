@@ -52,6 +52,45 @@ def calculate_sales_tax(item_cost, sales_tax_state, sales_tax_dict): #call the i
 def calculate_base_cost(cost_of_item, number_of_items):
     return cost_of_item * number_of_items
 
-#def calculate_
+def calculate_additional_fees():
+    while True:
+        additional_fees_answer = input("Are there any additional fees besides tax that you had to pay/could foresee being associated with this investment? ").strip().lower()
+        if additional_fees_answer in ("yes", "y"):
+            number_list=[]
+            print("Ok. You will now be prompted to enter any additional costs, including shipping, rent for a storage space, etc.")
+            print("Enter each fee one at a time.")
+            print("If a fee is more abstract, such as renting a storage space, enter your best guess at how much it will cost you for this purchase specifically.")
+            while True:
+                try:
+                    list_number = input('Type each number individually and press enter. Type "done" when you are done. ').strip().lower()
+                    if list_number in ('d', 'done'):
+                        break
+                    else:
+                        list_number = float(list_number)
+                        if list_number <= 0:
+                            print("Sorry, that is not a valid input.")
+                            print("Please enter a number greater than 0.")
+                        else:
+                            number_list.append(list_number)
+                except ValueError:
+                    print("Sorry, that is not a valid number.")
+                    print('Please try again.')
+            total = sum(number_list)
+            print(f"Your additional fee total is ${total:.2f}.")
+            return total
+        elif additional_fees_answer in ("no", "n"):
+            print('Great, your additonal fees total is $0.')
+            total = 0
+            return total
+        else:
+            print("Sorry, that is not a valid input.")
+            print('Please enter either "yes" or "no".')
+
+def calculate_total_cost(base_cost, tax, additional_fees):
+    return (base_cost + tax + additional_fees)
+
+def calculate_roi(total_cost, returns):
+    net_profit = returns - total_cost
+
     
    
