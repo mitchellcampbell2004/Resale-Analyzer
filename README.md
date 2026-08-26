@@ -5,7 +5,7 @@ A project that will eventually become a full-blown web application whose purpose
 ## Current Features
 
 -Web-scraping pyth program to find product details-in progress  
--Csv files to hold product, tax, and other info-in progress/some completed  
+-CSV files to hold product, tax, and other info-in progress/some completed  
 -Main python script that interacts with the user-in progress  
 -Calculations pyth file that does calculations for the user-in progress
 
