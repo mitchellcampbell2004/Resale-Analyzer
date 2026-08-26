@@ -28,7 +28,7 @@ with open("2026_sales_tax_by_state.csv", "r") as file: #means to open and read (
     sales_tax_reader = csv.DictReader(file)
 
     for row in sales_tax_reader:
-        sales_tax_state = row["State"]
+        sales_tax_state = row["State"].lower()
         statewide_sales_tax = (float(row["State Sales Tax Rate"].replace("%", "")) / 100)
         avg_local_sales_tax = (float(row["Avg. Local Sales Tax Rate"].replace("%", "")) / 100)
         total_sales_tax = statewide_sales_tax + avg_local_sales_tax
@@ -42,6 +42,16 @@ with open("2026_sales_tax_by_state.csv", "r") as file: #means to open and read (
         #print(sales_tax_dict)
 
 #select state + calculate sales tax
-while True:
-    sales_tax_state_selection = input("What state would you be making this purchase in? ").strip().lower()
+#while True:
+    #sales_tax_state_selection = input("What state would you be making this purchase in? ").strip().lower()
+
+def calculate_sales_tax(item_cost, sales_tax_state, sales_tax_dict): #call the item cost, the user-inputted state, and grab the dictionary
+    sales_tax_rate = sales_tax_dict[sales_tax_state]["total"] #need to call it in this order so that pyth doesn't get confused and think you're trying to index a str
+    return item_cost * sales_tax_rate
+
+def calculate_base_cost(cost_of_item, number_of_items):
+    return cost_of_item * number_of_items
+
+#def calculate_
     
+   
