@@ -322,7 +322,17 @@ if menu_choice == "calculations":
                 print("What hobbies/crafts subcategory does this item best fit under?")
                 hobbies_sub_cat = input("-Sewing(1) -Knitting/Crochet(2) -Painting(3) -Drawing(4) -Scrapbooking(5) -Model Kits(6) -3D Printing(7) -Woodworking(8) -Musical Instruments(9) -Photography(10) -RC/Hobby Vehicles(11) -Craft Supplies(12) -Art Supplies(13) -Other(14) ").strip().lower()
 
+        #choose industrial/business equipment subcategory
+        elif item_classification == "Industrial/Business Equiment":
+            while True:
+                print("What industrial/business equipment subcategory does this item best fit under?")
+                industrial_sub_cat = input("-Power Tools(1) -Hand Tools(2) -Construction Equipment(3) -Manufacturing Equipment(4) -Restaurant Equipment(5) -Office Equipment(6) -Medical Equipment(7) -Commercial Equipment(8) -Safety Equipment(9) -Warehouse Equipment(10) -Agricultural Equipment(11) -Automotive Shop Equipment(12) -Industrial Parts(13) -Other(14)").strip().lower()
 
+        #choose miscellaneous subcategory
+        elif item_classification == "Miscellaneous":
+            while True:
+                print("What miscellaneous subcategory does this item best fit under?")
+                misc_sub_cat = input("-Pet Supplies(1) -Baby/Kids(2) -Musical Equipment(3) -Party/Event Supplies(4) -Travel/Luggage(5) -Religious Items(6) -Seasonal/Holiday(7) -Promotional Merchandise(8) -Specialty Items(9) -Other(10) ").strip().lower()
 
 
 
