@@ -177,7 +177,7 @@ if menu_choice == "calculations":
                     elect_sub_cat_name = "Other"
                 else:
                     print("Sorry, that's not a valid option.")
-                    print("Please enter a listed subcategory or its corresponding number.")
+                    print("Please select a valid option or its corresponding number.")
                     continue
 
                 #confirm electronic subcategory selection or restart
@@ -217,7 +217,7 @@ if menu_choice == "calculations":
                     auto_sub_cat_name = "Other"
                 else:
                     print("Sorry, that's not a valid option.")
-                    print("Please elect a valid option or enter its corresponding number.")
+                    print("Please select a valid option or enter its corresponding number.")
                     continue
 
                 #confirm auto subcategory selection or restart
@@ -263,7 +263,7 @@ if menu_choice == "calculations":
                     clothing_sub_cat_name = "Other"
                 else:
                     print("Sorry, that's not a valid option.")
-                    print("Please elect a valid option or enter its corresponding number.")
+                    print("Please select a valid option or enter its corresponding number.")
                     continue
 
                 #confirm clothing subcategory selection or restart
@@ -279,18 +279,128 @@ if menu_choice == "calculations":
             while True:
                 print("What home/furniture subcategory does this item best fit under?")
                 home_sub_cat = input("-Furniture(1) -Kitchen(2) -Appliances(3) -Home Decor(4) -Lighting(5) -Bedding(6) -Bathroom(7) -Storage/Organization(8) -Tools/Hardware(9) -Garden/Yard(10) -Office Furniture(11) -Home Improvement(12) -Other(13) ").strip().lower()
-
+                if home_sub_cat in ("furniture", "1"):
+                    home_sub_cat_name = "Furniture"
+                elif home_sub_cat in ("kitchen", "2"):
+                    home_sub_cat_name = "Kitchen"
+                elif home_sub_cat in ("appliance", "appliances", "3"):
+                    home_sub_cat_name = "Appliances"
+                elif home_sub_cat in ("home decor", "decor", "4"):
+                    home_sub_cat_name = "Home Decor"
+                elif home_sub_cat in ("lightning", "5"):
+                    home_sub_cat_name = "Lighting"
+                elif home_sub_cat in ("bed", "bedding", "6"):
+                    home_sub_cat_name = "Bedding"
+                elif home_sub_cat in ("bathroom", "bath", "7"):
+                    home_sub_cat_name = "Bathroom"
+                elif home_sub_cat in ("storage", "organization", "storage/organization", "8"):
+                    home_sub_cat_name = "Storage/Organization"
+                elif home_sub_cat in ("tools", "hardware", "tools/hardware", "9"):
+                    home_sub_cat_name = "Tools/Hardware"
+                elif home_sub_cat in ("garden", "yard", "garden/yard", "10"):
+                    home_sub_cat_name = "Garden/Yard"
+                elif home_sub_cat in ("office", "office furniture", "11"):
+                    home_sub_cat_name = "Office Furniture"
+                elif home_sub_cat in ("home improvement", "improvement", "12"):
+                    home_sub_cat_name = "Home Improvement"
+                elif home_sub_cat in ("other", "13"):
+                    home_sub_cat_name = "Other"
+                else:
+                    print("Sorry, that's not a valid option.")
+                    print("Please select a valid option or enter its corresponding number.")
+                    continue
+                
+                home_sub_cat_name_answer = item_category_confirmation(home_sub_cat_name)
+                if home_sub_cat_name_answer == "y":
+                    break
+                elif home_sub_cat_name_answer == "n":
+                    continue
+                
         #choose collectible subcategory
         elif item_classification == "Collectibles":
             while True:
                 print("What collectibles subcategory does this item best fit under?")
-                collectible_sub_cat = input("-Trading Cards(1) -Coins/Currency(2) -Stamps(3) -Sports Memorabilia(4) -Autographs(5) -Action Figures(6) -Statues/Figurines(7) -Comics(8) -Vintage Collectibles(9) -Avertising/Memorobilia(10) -Antiques(11) -Rare/Valuable Items(12) -Other(13) ").strip().lower()
+                collect_sub_cat = input("-Trading Cards(1) -Coins/Currency(2) -Stamps(3) -Sports Memorabilia(4) -Autographs(5) -Action Figures(6) -Statues/Figurines(7) -Comics(8) -Vintage Collectibles(9) -Avertising Memorobilia(10) -Antiques(11) -Rare/Valuable Items(12) -Other(13) ").strip().lower()
+                if collect_sub_cat in ("trading", "cards", "trading cards", "1"):
+                    collect_sub_cat_name = "Trading Cards"
+                elif collect_sub_cat in ("coins", "currency", "coins/currency", "2"):
+                    collect_sub_cat_name = "Coins/Currency"
+                elif collect_sub_cat in ("stamp", "stamps", "3"):
+                    collect_sub_cat_name = "Stamps"
+                elif collect_sub_cat in ("sports", "sports memorobilia", "4"):
+                    collect_sub_cat_name  = "Sports Memorobilia"
+                elif collect_sub_cat in ("autographs", "autos", "5"):
+                    collect_sub_cat_name = "Autographs"
+                elif collect_sub_cat in ("action", "action figures", "6"):
+                    collect_sub_cat_name = "Action Figures"
+                elif collect_sub_cat in ("statue", "statues", "figurines", "statues/figurines", "7"):
+                    collect_sub_cat_name = "Statues/Figurines"
+                elif collect_sub_cat in ("comic", "comics", "8"):
+                    collect_sub_cat_name = "Comics"
+                elif collect_sub_cat in ("vintage", "vintage collectibles", "9"):
+                    collect_sub_cat_name = "Vintage Collectibles"
+                elif collect_sub_cat in ("adverts", "advertising", "advertising memorobilia", "10"):
+                    collect_sub_cat_name = "Advertising Memorobilia"
+                elif collect_sub_cat in ("antique", "antiques", "11"):
+                    collect_sub_cat_name = "Antiques"
+                elif collect_sub_cat in ("rare", "valuable", "rare/valuable", "rare/valuable items", "12"):
+                    collect_sub_cat_name = "Rare/Valuable Items"
+                elif collect_sub_cat in ("other", "13"):
+                    collect_sub_cat_name = "Other"                   
+                else:
+                    print("Sorry, that's not a valid option.")
+                    print("Please select a valid option or enter its corresponding number.")
+                    continue
+
+                collect_sub_cat_name_answer = item_category_confirmation(collect_sub_cat_name)
+                if collect_sub_cat_name_answer == "y":
+                    break
+                elif collect_sub_cat_name_answer == "n":
+                    continue
 
         #choose toy/game subcategory
         elif item_classification == "Toys/Games":
             while True:
                 print("What toys/games subcategory does this item best fit under?")
                 toy_sub_cat = input("-Board Games(1) -Card Games(2) -Video Games(3) -Gaming Consoles(4) -Puzzles(5) -LEGO/Building Sets(6) -Action Figures(7) -Dolls(8) -RC Vehicles(9) -Outdoor Toys(10) -Educational Toys(11) -Plush(12) -Vintage Toys(13) -Other(14) ").strip().lower()
+                if toy_sub_cat in ("board", "board game", "board games", "1"):
+                    toy_sub_cat_name = "Board Games"
+                elif toy_sub_cat in ("card", "card games", "2"):
+                    toy_sub_cat_name = "Card Games"
+                elif toy_sub_cat in ("video", "video games", "3"):
+                    toy_sub_cat_name = "Video Games"
+                elif toy_sub_cat in ("gaming consoles", "gaming", "4"):
+                    toy_sub_cat_name = "Gaming Consoles"
+                elif toy_sub_cat in ("puzzle", "puzzles", "puzzling, is it not?", "5"):
+                    toy_sub_cat_name = "Puzzles"
+                elif toy_sub_cat in ("lego", "building", "building sets", "lego/building sets", "6"):
+                    toy_sub_cat_name = "LEGO/Building Sets"
+                elif toy_sub_cat in ("action", "action figures", "7"):
+                    toy_sub_cat_name = "Action Figures"
+                elif toy_sub_cat in ("doll", "dolls", "8"):
+                    toy_sub_cat_name = "Dolls"
+                elif toy_sub_cat in ("rc", "vehicles", "rc vehivles", "9"):
+                    toy_sub_cat_name = "RC Vehicles"
+                elif toy_sub_cat in ("outdoor", "outdoor toys", "10"):
+                    toy_sub_cat_name = "Outdoor Toys"
+                elif toy_sub_cat in ("education", "educational toys", "education toys", "ejimucation", "11"):
+                    toy_sub_cat_name = "Educational Toys"
+                elif toy_sub_cat in ("plush", "plushies", "12"):
+                    toy_sub_cat_name = "Plush"
+                elif toy_sub_cat in ("vintage", "vintage toys", "13"):
+                    toy_sub-cat_name = "Vintage Toys"
+                elif toy_sub_cat in ("other", "14"):
+                    toy_sub_cat_name = "Other"
+                else:
+                    print("Sorry, that's not a valid option.")
+                    print("Please select a valid option or enter its corresponding number.")
+                    continue
+
+                toy_sub_cat_name_answer = item_category_confirmation(toy_sub_cat_name)
+                if toy_sub_cat_name_answer == "y":
+                    break
+                elif toy_sub_cat_name_answer == "n":
+                    continue
 
         #choose books/media subcategory
         elif item_classification == "Books/Media":
