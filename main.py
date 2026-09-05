@@ -137,7 +137,7 @@ if menu_choice == "calculations":
             elif item_cat_conf_answer == "n":
                 continue
              
-        #for the category of item, create subcategories and have user choose which one to access
+        #######for the category of item, create subcategories and have user choose which one to access
         #choose electronics subcategory
         if item_classification == "Electronics":
             while True:
@@ -407,36 +407,232 @@ if menu_choice == "calculations":
             while True:
                 print("What books/media subcategory does this item best fit under?")
                 books_sub_cat = input("-Fiction(1) -Nonfiction(2) -Textbooks(3) -Academic/Professeional(4) -Children's Books(5) -Comics/Manga(6) -Rare/Collectible Books(7) -DVDs/Blu-Ray(8) -CDs(9) -Vinyl Records(10) -Video Games(11) -Magazines(12) -Other(13) ").strip().lower()
+                if books_sub_cat in ("fiction", "1"):
+                    books_sub_cat_name = "Fiction"
+                elif books_sub_cat in ("nonfiction", "2"):
+                    books_sub_cat_name = "Nonfiction"
+                elif books_sub_cat in ("textbooks", "3"):
+                    books_sub_cat_name = "Textbooks"
+                elif books_sub_cat in ("academic", "professional", "academic/professional", "4"):
+                    books_sub_cat_name = "Academic/Professional"
+                elif books_sub_cat in ("children", "children's", "children's books", "5"):
+                    books_sub_cat_name = "Children's Books"
+                elif books_sub_cat in ("comic", "comics", "manga", "comics/manga", "6"):
+                    books_sub_cat_name = "Comics/Manga"   
+                elif books_sub_cat in ("rare", "collectible", "rare books", "collectible books", "rare/collectible books", "7"):
+                    books_sub_cat_name = "Rare/Collectible Books"
+                elif books_sub_cat in ("dvd", "dvds", "blu", "blu-ray", "dvds/blu-ray", "8"):
+                    books_sub_cat_name = "DVDs/Blu-Ray"
+                elif books_sub_cat in ("cd", "cds", "9"):
+                    books_sub_cat_name = "CDs"
+                elif books_sub_cat in ("vinyl", "records", "vinyl records", "10"):
+                    books_sub_cat_name = "Vinyl Records"
+                elif books_sub_cat in ("video games", "11"):
+                    books_sub_cat_name = "Video Games"
+                elif books_sub_cat in ("magazine", "mag", "magazines", "12"):
+                    books_sub_cat_name = "Magazines"
+                elif books_sub_cat in ("other", "13"):
+                    books_sub_cat_name = "Other"
+                else:
+                    print("Sorry, that's not a valid option.")
+                    print("Please select a valid option or enter its corresponding number.")
+                    continue
+
+                books_sub_cat_name_answer = item_category_confirmation(books_sub_cat_name)
+                if books_sub_cat_name_answer == "y":
+                    break
+                elif books_sub_cat_name_answer == "n":
+                    continue
 
         #choose sports/outdoors subcategory
         elif item_classification == "Sports/Outdoors":
             while True:
                 print("What sports/outdoors subcategory does this item best fit under?")
                 sports_sub_cat = input("-Camping(1) -Hiking(2) -Fishing(3) -Hunting(4) -Cycling(5) -Golf(6) -Fitness/Gym Equipmnet(7) -Running(8) -Water Sports(9) -Winter Sports(10) -Team Sports(11) -Sporting Goods(12) -Outdoor Recreation(13) -Other(14) ").strip().lower()
+                if sports_sub_cat in ("camp", "camping", "glamping", "1"):
+                    sports_sub_cat_name = "Camping"
+                elif sports_sub_cat in ("hike", "take a hike!", "hiking", "2"):
+                    sports_sub_cat_name = "Hiking"
+                elif sports_sub_cat in ("fish", "fishing", "3"):
+                    sports_sub_cat_name = "Fishing"
+                elif sports_sub_cat in ("hunt", "hunting", "4"):
+                    sports_sub_cat_name = "Hunting"
+                elif sports_sub_cat in ("cycle", "bike", "biking", "cycling", "5"):
+                    sports_sub_cat_name = "Cycling"
+                elif sports_sub_cat in ("golf", "golfing", "6"):
+                    sports_sub_cat_name = "Golfing"
+                elif sports_sub_cat in ("fitness", "gym", "fitness equipment", "gym equipment", "fitnes//gym equipment", "7"):
+                    sports_sub_cat_name = "Fitness/Gym Equipment"
+                elif sports_sub_cat in ("run", "running", "8"):
+                    sports_sub_cat_name = "Running"
+                elif sports_sub_cat in ("water", "water sports", "9"):
+                    sports_sub_cat_name = "Water Sports"
+                elif sports_sub_cat in ("winter", "winter sports", "10"):
+                    sports_sub_cat_name = "Winter Sports"
+                elif sports_sub_cat in ("team", "team sports" "11"):
+                    sports_sub_cat_name = "Team Sports"
+                elif sports_sub_cat in ("sporting", "sporting goods", "12"):
+                    sports_sub_cat_name = "Sporting Goods"
+                elif sports_sub_cat in ("outdoor", "outdoor rec", "outdoor recreation", "13"):
+                    sports_sub_cat_name = "Outdoor Recreation"
+                elif sports_sub_cat in ("other", "14"):
+                    sports_sub_cat_name = "Other"
+                else:
+                    print("Sorry, that's not a valid option.")
+                    print("Please select a valid option or enter its corresponding number.")
+                    continue
+
+                sports_sub_cat_name_answer = item_category_confirmation(sports_sub_cat_name)
+                if sports_sub_cat_name_answer == "y":
+                    break
+                elif sports_sub_cat_name_answer == "n":
+                    continue
 
         #choose jewelry/accessories subcategory
         elif item_classification == "Jewelry/Accessories":
             while True:
                 print("What jewelry/accessories subcategory does this item best fit under?")
                 jewelry_sub_cat = input("-Rings(1) -Necklaces(2) -Bracelets(3) -Earrings(4) -Watches(5) -Sunglasses(6) -Handbags/Purses(7) -Wallets(8) -Belts(9) -Hats(10) -Designer Accessories(11) -Fine Jewelry(12) -Costume Jewelry(13) -Other(14) ").strip().lower()
+                if jewelry_sub_cat in ("ring", "rings", "1"):
+                    jewelry_sub_cat_name = "Rings"
+                elif jewelry_sub_cat in ("neck", "necklace", "necklaces", "2"):
+                    jewelry_sub_cat_name = "Necklaces"
+                elif jewelry_sub_cat in ("bracelet", "bracelets", "3"):
+                    jewelry_sub_cat_name = "Bracelets"
+                elif jewelry_sub_cat in ("earrings", "ear", "earring", "4"):
+                    jewelry_sub_cat_name = "Earrings"
+                elif jewelry_sub_cat in ("watch", "watches", "5"):
+                    jewelry_sub_cat_name = "Watches"
+                elif jewelry_sub_cat in ("sunglasses", "sunnies", "6"):
+                    jewelry_sub_cat_name = "Sunglasses"
+                elif jewelry_sub_cat in ("handbag", "handbags", "purse", "purses", "handbags/purses", "7"):
+                    jewelry_sub_cat_name = "Handbags/Purses"
+                elif jewelry_sub_cat in ("wallet", "wallets", "coin purse", "8"):
+                    jewelry_sub_cat_name = "Wallets"
+                elif jewelry_sub_cat in ("belt", "belts", "9"):
+                    jewelry_sub_cat_name = "Belts"
+                elif jewelry_sub_cat in ("hat", "hats", "10"):
+                    jewelry_sub_cat_name = "Hats"
+                elif jewelry_sub_cat in ("designer", "designer accessories", "11"):
+                    jewelry_sub_cat_name = "Designer Accessories"
+                elif jewelry_sub_cat in ("fine", "fine jewelry", "12"):
+                    jewelry_sub_cat_name = "Fine Jewelry"
+                elif jewelry_sub_cat in ("costume", "costume jewelry", "13"):
+                    jewelry_sub_cat_name = "Costume Jewelry"
+                elif jewelry_sub_cat in ("other", "14"):
+                    jewelry_sub_cat_name = "Other"
+                else:
+                    print("Sorry, that's not a valid option.")
+                    print("Please select a valid option or enter its corresponding number.")
+                    continue
+
+                jewelry_sub_cat_name_answer = item_category_confirmation(jewelry_sub_cat_name)
+                if jewelry_sub_cat_name_answer == "y":
+                    break
+                elif jewelry_sub_cat_name_answer == "n":
+                    continue
 
         #choose beauty/personal care subcategory
         elif item_classification =="Beauty/Personal Care":
             while True:
                 print("What beauty/personal care subcategory does this item best fit under?")
                 beauty_sub_cat = input("-Skincare(1) -Haircare(2) -Makeup(3) -Fragrances(4) -Grooming(5) -Hair Tools(6) -Personal Care Appliances(7) -Bath/Body(8) -Beauty Accessories(9) -Professional/Spa Equipment(10) -Other(11) ").strip().lower()
+                if beauty_sub_cat in ("skin", "skincare", "1"):
+                    beauty_sub_cat_name = "Skincare"
+                elif beauty_sub_cat in ("haircare", "2"):
+                    baeuty_sub_cat_name = "Haircare"
+                elif beauty_sub_cat in ("makeup", "3"):
+                    baeuty_sub_cat_name = "Makeup"
+                elif beauty_sub_cat in ("fragrances", "frog races", "4"):
+                    beauty_sub_cat_name = "Fragrances"
+                elif beauty_sub_cat in ("grooming", "5"):
+                    beauty_sub_cat_name = "Grooming"
+                elif beauty_sub_cat in ("hair tools", "6"):
+                    beauty_sub_cat_name = "Hair Tools"
+                elif beauty_sub_cat in ("personal care", "personal care appliances", "appliances" "7"):
+                    beauty_sub_cat_name = "Personal Care Appliances"
+                elif beauty_sub_cat in ("bath", "body", "bath/body", "8"):
+                    beauty_sub_cat_name = "Bath/Body"
+                elif beauty_sub_cat in ("beauty accessories", "accessories", "9"):
+                    beauty_sub_cat_name = "Beauty Accessories"
+                elif beauty_sub_cat in ("professional", "spa", "professional equipment", "spa equipment", "professional/spa equipment", "10"):
+                    beauty_sub_cat_name = "Professional/Spa Equipment"
+                elif beauty_sub_cat in ("other", "11"):
+                    beauty_sub_cat_name = "Other"                    
+                else:
+                    print("Sorry, that's not a valid option.")
+                    print("Please select a valid option or enter its corresponding number.")
+                    continue
+
+                beauty_sub_cat_name_answer = item_category_confirmation(beauty_sub_cat_name)
+                if beauty_sub_cat_name_answer == "y":
+                    break
+                elif beauty_sub_cat_name_answer == "n":
+                    continue
 
         #choose hobbies/crafts subcategory
         elif item_classification == "Hobbies/Crafts":
             while True:
                 print("What hobbies/crafts subcategory does this item best fit under?")
-                hobbies_sub_cat = input("-Sewing(1) -Knitting/Crochet(2) -Painting(3) -Drawing(4) -Scrapbooking(5) -Model Kits(6) -3D Printing(7) -Woodworking(8) -Musical Instruments(9) -Photography(10) -RC/Hobby Vehicles(11) -Craft Supplies(12) -Art Supplies(13) -Other(14) ").strip().lower()
+                hobb_sub_cat = input("-Sewing(1) -Knitting/Crochet(2) -Painting(3) -Drawing(4) -Scrapbooking(5) -Model Kits(6) -3D Printing(7) -Woodworking(8) -Musical Instruments(9) -Photography(10) -RC/Hobby Vehicles(11) -Craft Supplies(12) -Art Supplies(13) -Other(14) ").strip().lower()
+                if hobb_sub_cat in ("sew", "sewing", "1"):
+                    hobb_sub_cat_name = "Sewing"
+                elif hobb_sub_cat in ("snit", "knitting", "crochet", "chochett", "knitting/crochet", "2"):
+                    hobb_sub_cat_name = "Knitting/Crochet"
+                elif hobb_sub_cat in ("pain", "painting", "3"):
+                    hobb_sub_cat_name = "Painting"
+                elif hobb_sub_cat in ("draw", "drawing", "4"):
+                    hobb_sub_cat_name = "Drawing"
+                elif hobb_sub_cat in ("scrap", "scrappy doo", "scrapbooking", "5"):
+                    hobb_sub_cat_name = "Scrapbooking"
+                elif hobb_sub_cat in ("model", "model kits", "6"):
+                    hobb_sub_cat_name = "Model Kits"
+                elif hobb_sub_cat in ("3d", "3d printing", "7"):
+                    hobb_sub_cat_name = "3D Printing"
+                elif hobb_sub_cat in ("wood", "woodworking", "8"):
+                    hobb_sub_cat_name = "Woodworking"
+                elif hobb_sub_cat in ("music", "musical", "instrument", "musical instruments", "instruments", "9"):
+                    hobb_sub_cat_name = "Musical Instruments"
+                elif hobb_sub_cat in ("photo", "photos", "photograph", "photography", "10"):
+                    hobb_sub_cat_name = "Photography"
+                elif hobb_sub_cat in ("rc", "hobby vehicles", "rc vehicles", "rc/hobby vehicles", "11"):
+                    hobb_sub_cat_name = "RC/Hobby Vehicles"
+                elif hobb_sub_cat in ("craft", "crafting", "craft supplies", "12"):
+                    hobb_sub_cat_name = "Craft Supplies"
+                elif hobb_sub_cat in ("art", "artsy", "art supplies", "13"):
+                    hobb_sub_cat_name = "Art Supplies"
+                elif hobb_sub_cat in ("other", "14"):
+                    hobb_sub_cat_name = "Other"
+                else:
+                    print("Sorry, that's not a valid option.")
+                    print("Please select a valid option or enter its corresponding number.")
+                    continue
+
+                hobb_sub_cat_name_answer = item_category_confirmation(hobb_sub_cat_name)
+                if hobb_sub_cat_name_answer == "y":
+                    break
+                elif hobb_sub_cat_name_answer == "n":
+                    continue
 
         #choose industrial/business equipment subcategory
         elif item_classification == "Industrial/Business Equiment":
             while True:
                 print("What industrial/business equipment subcategory does this item best fit under?")
-                industrial_sub_cat = input("-Power Tools(1) -Hand Tools(2) -Construction Equipment(3) -Manufacturing Equipment(4) -Restaurant Equipment(5) -Office Equipment(6) -Medical Equipment(7) -Commercial Equipment(8) -Safety Equipment(9) -Warehouse Equipment(10) -Agricultural Equipment(11) -Automotive Shop Equipment(12) -Industrial Parts(13) -Other(14)").strip().lower()
+                ind_sub_cat = input("-Power Tools(1) -Hand Tools(2) -Construction Equipment(3) -Manufacturing Equipment(4) -Restaurant Equipment(5) -Office Equipment(6) -Medical Equipment(7) -Commercial Equipment(8) -Safety Equipment(9) -Warehouse Equipment(10) -Agricultural Equipment(11) -Automotive Shop Equipment(12) -Industrial Parts(13) -Other(14)").strip().lower()
+                if ind_sub_cat in ("power", "power tool", "power tools", "1"):
+                    ind_sub_cat_name = "Power Tools"
+                elif ind_sub_cat in ("hand tools", "hand", "2"):
+                    ind_sub_cat_name = "Hand Tools"
+                else:
+                    print("Sorry, that's not a valid option.")
+                    print("Please select a valid option or enter its corresponding number.")
+                    continue
+
+                ind_sub_cat_name_answer = item_category_confirmation(ind_sub_cat_name)
+                if ind_sub_cat_name_answer == "y":
+                    break
+                elif ind_sub_cat_name_answer == "n":
+                    continue
 
         #choose miscellaneous subcategory
         elif item_classification == "Miscellaneous":
