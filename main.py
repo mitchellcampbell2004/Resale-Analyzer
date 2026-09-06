@@ -183,7 +183,7 @@ if menu_choice == "calculations":
                 #confirm electronic subcategory selection or restart
                 elect_sub_cat_name_answer = item_category_confirmation(elect_sub_cat_name)
                 if elect_sub_cat_name_answer == "y":
-                    elect_classification = elect_sub_cat_name
+                    item_sub_cat = elect_sub_cat_name
                     break
                 elif elect_sub_cat_name_answer == "n":
                     continue
@@ -223,7 +223,7 @@ if menu_choice == "calculations":
                 #confirm auto subcategory selection or restart
                 auto_sub_cat_name_answer = item_category_confirmation(auto_sub_cat_name)
                 if auto_sub_cat_name_answer == "y":
-                    auto_classification = auto_sub_cat_name
+                    item_sub_cat = auto_sub_cat_name
                     break
                 elif auto_sub_cat_name_answer =="n":
                     continue
@@ -269,7 +269,7 @@ if menu_choice == "calculations":
                 #confirm clothing subcategory selection or restart
                 clothing_sub_cat_name_answer = item_category_confirmation(clothing_sub_cat_name)
                 if clothing_sub_cat_name_answer == "y":
-                    clothing_classification = clothing_sub_cat_name
+                    item_sub_cat = clothing_sub_cat_name
                     break
                 elif clothing_sub_cat_name_answer == "n":
                     continue
@@ -312,6 +312,7 @@ if menu_choice == "calculations":
                 
                 home_sub_cat_name_answer = item_category_confirmation(home_sub_cat_name)
                 if home_sub_cat_name_answer == "y":
+                    item_sub_cat = home_sub_cat_name
                     break
                 elif home_sub_cat_name_answer == "n":
                     continue
@@ -354,6 +355,7 @@ if menu_choice == "calculations":
 
                 collect_sub_cat_name_answer = item_category_confirmation(collect_sub_cat_name)
                 if collect_sub_cat_name_answer == "y":
+                    item_sub_cat = collect_sub_cat_name
                     break
                 elif collect_sub_cat_name_answer == "n":
                     continue
@@ -398,6 +400,7 @@ if menu_choice == "calculations":
 
                 toy_sub_cat_name_answer = item_category_confirmation(toy_sub_cat_name)
                 if toy_sub_cat_name_answer == "y":
+                    item_sub_cat = toy_sub_cat_name
                     break
                 elif toy_sub_cat_name_answer == "n":
                     continue
@@ -440,6 +443,7 @@ if menu_choice == "calculations":
 
                 books_sub_cat_name_answer = item_category_confirmation(books_sub_cat_name)
                 if books_sub_cat_name_answer == "y":
+                    item_sub_cat = books_sub_cat_name
                     break
                 elif books_sub_cat_name_answer == "n":
                     continue
@@ -484,6 +488,7 @@ if menu_choice == "calculations":
 
                 sports_sub_cat_name_answer = item_category_confirmation(sports_sub_cat_name)
                 if sports_sub_cat_name_answer == "y":
+                    item_sub_cat = sports_sub_cat_name
                     break
                 elif sports_sub_cat_name_answer == "n":
                     continue
@@ -528,6 +533,7 @@ if menu_choice == "calculations":
 
                 jewelry_sub_cat_name_answer = item_category_confirmation(jewelry_sub_cat_name)
                 if jewelry_sub_cat_name_answer == "y":
+                    item_sub_cat = jewelry_sub_cat_name
                     break
                 elif jewelry_sub_cat_name_answer == "n":
                     continue
@@ -566,6 +572,7 @@ if menu_choice == "calculations":
 
                 beauty_sub_cat_name_answer = item_category_confirmation(beauty_sub_cat_name)
                 if beauty_sub_cat_name_answer == "y":
+                    item_sub_cat = beauty_sub_cat_name
                     break
                 elif beauty_sub_cat_name_answer == "n":
                     continue
@@ -610,6 +617,7 @@ if menu_choice == "calculations":
 
                 hobb_sub_cat_name_answer = item_category_confirmation(hobb_sub_cat_name)
                 if hobb_sub_cat_name_answer == "y":
+                    item_sub_cat = hobb_sub_cat_name
                     break
                 elif hobb_sub_cat_name_answer == "n":
                     continue
@@ -623,6 +631,30 @@ if menu_choice == "calculations":
                     ind_sub_cat_name = "Power Tools"
                 elif ind_sub_cat in ("hand tools", "hand", "2"):
                     ind_sub_cat_name = "Hand Tools"
+                elif ind_sub_cat in ("construct", "construction", "construction equipment", "3"):
+                    ind_sub_cat_name = "Construction Equipment"
+                elif ind_sub_cat in ("manufacture", "manufacturing", "manufacturing equipment", "4"):
+                    ind_sub_cat_name = "Manufacturing Equipment"
+                elif ind_sub_cat in ("restaurant", "restaurant equipment", "5"):
+                    ind_sub_cat_name = "Restaurant Equipment"
+                elif ind_sub_cat in ("office", "office equipment", "6"):
+                    ind_sub_cat_name = "Office Equipment"
+                elif ind_sub_cat in ("medical", "med", "medical equipment", "7"):
+                    ind_sub_cat_name = "Medical Equipment"
+                elif ind_sub_cat in ("commerce", "commercial", "commercial equipment", "8"):
+                    ind_sub_cat_name = "Commercia Equipment"
+                elif ind_sub_cat in ("safety", "safe", "safety equipment", "9"):
+                    ind_sub_cat_name = "Safety Equipment"
+                elif ind_sub_cat in ("warehouse", "warehouse equipment", "10"):
+                    ind_sub_cat_name = "Warehouse Equipment"
+                elif ind_sub_cat in ("agr", "agriculture", "agricultural", "agricultural equipment", "11"):
+                    ind_sub_cat_name = "Agricultural Equipment"
+                elif ind_sub_cat in ("auto", "automotive", "automotive equipment", "12"):
+                    ind_sub_cat_name = "Automotive Equipment"
+                elif ind_sub_cat in ("industrial", "industrial parts", "13"):
+                    ind_sub_cat_name = "Industrial Parts"
+                elif ind_sub_cat in ("other", "14"):
+                    ind_sub_cat_name = "Other"
                 else:
                     print("Sorry, that's not a valid option.")
                     print("Please select a valid option or enter its corresponding number.")
@@ -630,6 +662,7 @@ if menu_choice == "calculations":
 
                 ind_sub_cat_name_answer = item_category_confirmation(ind_sub_cat_name)
                 if ind_sub_cat_name_answer == "y":
+                    item_sub_cat = ind_sub_cat_name
                     break
                 elif ind_sub_cat_name_answer == "n":
                     continue
@@ -639,8 +672,28 @@ if menu_choice == "calculations":
             while True:
                 print("What miscellaneous subcategory does this item best fit under?")
                 misc_sub_cat = input("-Pet Supplies(1) -Baby/Kids(2) -Musical Equipment(3) -Party/Event Supplies(4) -Travel/Luggage(5) -Religious Items(6) -Seasonal/Holiday(7) -Promotional Merchandise(8) -Specialty Items(9) -Other(10) ").strip().lower()
+                if misc_sub_cat in ("pet", "pets", "pet supplies", "doggo", "meow", "1"):
+                    misc_sub_cat_name = "Pet Supplies"
+                elif misc_sub_cat in ("baby", "kid", "babies", "kids", "baby/kids", "2"):
+                    misc_sub_cat_name = "Baby/Kids"
+                elif misc_sub_cat in ("music", "musical", "music equipment", "musical equipment", "3"):
+                    misc_sub_cat_name = "Musical Equipment"
+                elif misc_sub_cat in ("party", "event", "party/event", "party supplies", "event supplies", "party/event supplies", "4"):
+                    misc_sub_cat_name = "Party/Event Supplies"
+                elif misc_sub_cat in ("travel", "luggage", "travel/luggage", "5"):
+                    misc_sub_cat_name = "Travel/Luggage"
+                elif misc_sub_cat 
+                else:
+                    print("Sorry, that's not a valid option.")
+                    print("Please select a valid option or enter its corresponding number.")
+                    continue
 
-
+                misc_sub_cat_name_answer = item_category_confirmation(misc_sub_cat_name)
+                if misc_sub_cat_name_answer == "y":
+                    item_sub_cat = misc_sub_cat_name
+                    break
+                elif misc_sub_cat_name_answer == "n":
+                    continue
 
     #multiple items choice loop
     '''elif item_type_choice == "multiple":
