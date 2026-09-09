@@ -3,10 +3,11 @@
 A project that will eventually become a full-blown web application whose purpose is to calculate the profitability of purchasing items for resale.
 
 ## Current Features
-
--Web-scraping pyth program to find product details-in progress  
+ 
+-Web-scraping pyth program to find product details-in progress/partial completion
 -CSV files to hold product, tax, and other info-in progress/some completed  
--Main python script that interacts with the user-in progress  
+-Main python script that interacts with the user-in progress/a lot of progress made  
+-Main pyth program 
 -Calculations pyth file that does calculations for the user-in progress
 
 ## Planned/Potential Features
