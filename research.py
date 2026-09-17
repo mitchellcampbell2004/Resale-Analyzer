@@ -5,14 +5,17 @@
 #things I've learned:
 #Using "r" before the string in a regex search tells python to give the string to regex as is and not let things like \n or \t in python mess it up
 #Practiced using regex to isolate portions of a string
+#Practiced parsing opening and parsing web pages with BeautifulSoup
+#Practiced cleaning code and converting it to CSV data
+
+#******Notes for next time: some subcategories have more than one page. Need to use for loop/while loop combo to scrape books in one url, then the next if there's multiple pages
 
 
-
-import urllib.request, urllib.parse, urllib.error
-from bs4 import BeautifulSoup
-import ssl # defaults to certificate verification and most secure protocol (now TLS)
+import urllib.request, urllib.parse, urllib.error 
+from bs4 import BeautifulSoup 
+import ssl #defaults to certificate verification and most secure protocol (now TLS)
 import re #import regex
-import csv
+import csv #import csv
 
 #ignore SSL/TLS certificate errors
 ctx = ssl.create_default_context()
@@ -24,14 +27,16 @@ url = input('Enter URL: ')
 html = urllib.request.urlopen(url, context=ctx).read()
 soup = BeautifulSoup(html, 'html.parser')
 
-#print(soup)
+#find all the anchor tags + then isolate the categories
 book_categories = soup.find_all("a")
 category_count = 0
 category_link_count = 0
-book_dict = {}
+book_list = []
+first_book_dict = {}
 book_category_list = []
+book_soup_count = 0
 for category in book_categories:
-    #category_name = category.get_text(strip=True) #get the text from a tags and strip them
+    #category_name = category.get_text(strip=True) #get the text from "a" tags and strip them
     #if len(category_name) >=1 and category_name not in ("Books to Scrape", "Home", "Books"): #forego other a tags and get to product categories (need to *****need to figure out how to apply it to different sites w/ different a tags)
         #if category_count != 50: #print only the category names and not other a tags hanging around (*****need to figure out how to apply it to other sites that don't have exactly 50 categories)
             #print(category_name)
@@ -42,6 +47,18 @@ for category in book_categories:
         new_category_link = "https://books.toscrape.com/" + category_link #for whatever reason, need to add the main page to the url; inspected the site, maybe b/c it comes from a different script?
         category_page = urllib.request.urlopen(new_category_link, context=ctx).read()
         category_soup = BeautifulSoup(category_page, 'html.parser')
+
+        #isolate the name of the category (in this case all will be "Books"), capitalize it, and add it to each book dict
+        category_name = re.search("catalogue/category/([a-z]+)/", category_link)
+        final_category_name = category_name.group(1).capitalize()
+        first_book_dict["Category"] = final_category_name
+        
+        #isolate the name of the subcategory using regex, capitalize it, and add it to each book dict
+        subcategory_name = re.search("catalogue/category/books/(.+)_", category_link)
+        final_subcategory_name = subcategory_name.group(1).capitalize()
+        first_book_dict["Subcategory"] = final_subcategory_name
+
+        #print(new_category_link)
         
         book_anchors = category_soup.find_all("h3") #isolate the specific products by their identifying variable; in this case, h3; can't do find a's first and then find h3s, because find as turns it into a list
         book_soup_count = 0
@@ -51,7 +68,9 @@ for category in book_categories:
             book_anchor_string = str(book_anchor)
             book_link = re.search("/../..(.+)/index", book_anchor_string) #[^/]+ = any character except /
             book_link = (book_link.group(1)) #need group because it'll return a match object string; group() gives you the entire regex match, group(1) gives you just the part you asked for
-            #category_link_sub_num = len(book_link + )
+
+
+            #this will find me the link to the specific books; they're stored in "catalogue", not as an extension of the category link
             category_link_portion = "https://books.toscrape.com/catalogue"       #new_category_link[:-11] #reality: just input the catalogue portion, gonna add book next; my wish: subtract the last 11 char of new_cat_link so that I can get rid of index, creating first part of final book string (if it was how I'd structure it)
             book_link_portion = book_link + "/index.html" #add index to book link to create last part of final book link
             final_book_link = category_link_portion + book_link_portion #add links together to make final book string
@@ -60,36 +79,63 @@ for category in book_categories:
             #open book page (final product page) and parse data
             book_link_page = urllib.request.urlopen(final_book_link, context=ctx).read()
             book_soup = BeautifulSoup(book_link_page, 'html.parser')
+            #if book_soup_count < 1:
+                #print(str(book_soup)[300:3000]) #need to separate it like this bc book_soup is a BeautifulSoup obj, not a str
 
-            #find book title
+            #find book title by using regex to isolate title tag
             book_title_tag = book_soup("title")
             book_title_tag_str = str(book_title_tag)
             book_title = re.search(r">\s*(.*)\s*\|", book_title_tag_str) #need to add "\" to | b/c the | is a spec char in regex
             book_title = (book_title.group(1))
             book_title = book_title.strip() # or just book_title[:-1]  #there's a white space that hangs onto the end of the title, so need to delete that; found it by counting char in title and then printing char --> 1 char difference, which is why I subtracted 1 char
+            first_book_dict["Product"] = book_title
 
-
-            #find # of items in stock
+            #find # of items in stock by using regex to isolate instock availability class of p tag
             book_availability_tags = book_soup("p", class_="instock availability") #to find class within tags, put tag first and then 'class_="{name of class}"'
             for tag in book_availability_tags:
                 book_availability_str = str(tag)
                 book_availability_number = re.search(r"\d+", book_availability_str) #instead of trying to use r".*([0-9])" to find a number use r"\d+" --> means to find one or more digits (\d = digit)
-                final_book_avail_num = (book_availability_number.group()) #don't use group(1), use group() b/c there's no parentheses in the regex equation
+                if book_availability_number: #if regex finds a book num, assign it to final_book_avail_num
+                    final_book_avail_num = (book_availability_number.group()) #don't use group(1), use group() b/c there's no parentheses in the regex equation
+                else: #else, assign 0 to final_book_avail_num (Nonetype)
+                    final_book_avail_num = 0
                 if book_availability_tag_count < 1:
-                    print(final_book_avail_num) ###******Need to finish --> something about needing to restructure code to not use for loop b/c that's throwing errors
+                    #print(final_book_avail_num) ###******FINISHED --> something about needing to restructure code to not use for loop b/c that's throwing errors
                     book_availability_tag_count += 1
+                    first_book_dict["Availability"] = final_book_avail_num
 
-            if book_soup_count < 1:
-                #print(book_availability_tag)
-                book_soup_count += 1
+            #find the price by using regex to isolate price_color class of p tag
+            book_price_tags = book_soup("p", class_ = "price_color")
+            for tag in book_price_tags:
+                book_price_str = str(tag)
+                book_price = re.search(r"\d+(?:\.\d+)?", book_price_str) #\d+will search for digit one or more times, ? at end means "whole group is optional" so computer won't give up if not there, \. means a literal dot, (?:...) is a non-capturing group that holds the dot and extra numbers so the ? can make them both optional
+                final_book_price = (book_price.group())
+                first_book_dict["Price"] = final_book_price
 
+                #if book_soup_count < 1:
+                    #book_soup_count += 1
+                    
+                    #print(final_book_price)
+
+            #add final_book_link as "Source" in book dict
+            first_book_dict["Source"] = final_book_link
+
+            #add first_book_dict to book_dict list
+            #if book_soup_count < 0:
+                #book_list.append(first_book_dict)
+
+            #if len(book_list) % 10 == 0:
+                #print(f"Scraped {len(book_list)} books")
             
-            
+#for book in book_list[:2]:
+    #print(book)
+
+
         #book_name = book_name_anchor.get_text(strip=True)
         #print(book_name)
         #for book_name in book_names:
             #print(book_name)
-        category_count += 1
+        #category_count += 1
         #category_link_count += 1, this is not needed rn
         
 
