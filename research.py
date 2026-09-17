@@ -35,18 +35,18 @@ book_list = []
 first_book_dict = {}
 book_category_list = []
 book_soup_count = 0
+
+#isolate the individual categories so that I can go through them one at a time
 for category in book_categories:
-    #category_name = category.get_text(strip=True) #get the text from "a" tags and strip them
-    #if len(category_name) >=1 and category_name not in ("Books to Scrape", "Home", "Books"): #forego other a tags and get to product categories (need to *****need to figure out how to apply it to different sites w/ different a tags)
-        #if category_count != 50: #print only the category names and not other a tags hanging around (*****need to figure out how to apply it to other sites that don't have exactly 50 categories)
-            #print(category_name)
-            #category_count += 1
     category_link = category.get('href', None)
+
+    #isolate the actual book categories, not other hrefs
     if category_link.startswith("catalogue/category/books/") and category_count < 1: #isolate just the book categories, which in this case is a subcategory of book category, but is isolated with "...books/"
 
         new_category_link = "https://books.toscrape.com/" + category_link #for whatever reason, need to add the main page to the url; inspected the site, maybe b/c it comes from a different script?
         category_page = urllib.request.urlopen(new_category_link, context=ctx).read()
         category_soup = BeautifulSoup(category_page, 'html.parser')
+
 
         #isolate the name of the category (in this case all will be "Books"), capitalize it, and add it to each book dict
         category_name = re.search("catalogue/category/([a-z]+)/", category_link)
@@ -79,8 +79,6 @@ for category in book_categories:
             #open book page (final product page) and parse data
             book_link_page = urllib.request.urlopen(final_book_link, context=ctx).read()
             book_soup = BeautifulSoup(book_link_page, 'html.parser')
-            #if book_soup_count < 1:
-                #print(str(book_soup)[300:3000]) #need to separate it like this bc book_soup is a BeautifulSoup obj, not a str
 
             #find book title by using regex to isolate title tag
             book_title_tag = book_soup("title")
@@ -112,10 +110,6 @@ for category in book_categories:
                 final_book_price = (book_price.group())
                 first_book_dict["Price"] = final_book_price
 
-                #if book_soup_count < 1:
-                    #book_soup_count += 1
-                    
-                    #print(final_book_price)
 
             #add final_book_link as "Source" in book dict
             first_book_dict["Source"] = final_book_link
@@ -126,24 +120,13 @@ for category in book_categories:
 
             #if len(book_list) % 10 == 0:
                 #print(f"Scraped {len(book_list)} books")
-            
-#for book in book_list[:2]:
-    #print(book)
+             
 
 
-        #book_name = book_name_anchor.get_text(strip=True)
-        #print(book_name)
-        #for book_name in book_names:
-            #print(book_name)
-        #category_count += 1
-        #category_link_count += 1, this is not needed rn
+
         
 
-
-
-
-
-#print(book_category_list)
+        
 
 #with open("books.csv", "a", newline="", encoding="utf-8") as file:
     #writer = csv.writer(file)
